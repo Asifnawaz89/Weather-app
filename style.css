@@ -1,0 +1,29 @@
+body{
+    background: url("image4.jpg");
+    background: light;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    
+}
+
+.main-Container{
+display: flex;
+justify-content: center;
+}
+button{
+    color: black;
+    background-color: white;
+    padding: 10px 5px;
+    border-radius: 15px;
+    
+    
+}
+button:hover{
+    color: white;
+    background-color:gray;
+   
+    
+}

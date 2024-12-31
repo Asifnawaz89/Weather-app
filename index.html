@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-Update</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-Container">
+        
+        <div class="cont">
+            <h1>Weather-Update</h1>
+    <label for="">
+        Enter City Name: <input type="text" id="cityName">
+    </label>
+    <br>
+    <br>
+    <button onclick="checkWeather()">Check Weather</button>
+    <br>
+    <br>
+
+    
+   <img src="" alt="" id="weatherImg">
+   <h2>Weather:</h2>
+   <h4 id="weatherText"></h4>
+  
+   <ul>
+    <li id="temp">
+
+    </li>
+    <li id="feel">
+
+    </li>
+    
+    <li id="humi">
+
+    </li>
+    <li id="wind">
+
+    </li>
+    <li id="lastupdate">
+
+    </li>
+   </ul>
+
+   
+   
+   <h2>location:</h2>
+   <ul>
+    <li id="city">
+
+    </li>
+
+
+
+    <li id="region">
+
+    </li>
+    <li id="Country">
+
+    </li>
+   <li id="localTime">
+
+   </li>
+   </ul>
+
+  
+
+</div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+    function checkWeather(){
+        let cityName = document.getElementById("cityName").value;
+        axios.get(`https://api.weatherapi.com/v1/current.json?key=d347dfb1a00b4f86add45435242510&q=${cityName}`)
+        .then((response) => {
+            console.log(response.data)
+            let currentLocation = response.data.location;
+            let currentWeather = response.data.current;
+
+            document.getElementById("weatherImg").src = `https:${currentWeather.condition.icon}`
+            document.getElementById("weatherText").innerText = `(${currentWeather.condition.text})`
+               document.getElementById("Country").innerText = `Country:${currentLocation.country}`
+                document.getElementById("region").innerText = `Region:${currentLocation.region}`
+            document.getElementById("city").innerText = `CityName: ${currentLocation.name}`
+            document.getElementById("localTime").innerText = `localtime: ${currentLocation.localtime}`
+                document.getElementById("temp").innerText = `Temperature: ${currentWeather.temp_c}°C`
+                document.getElementById("feel").innerText = `feelslike_c: ${currentWeather.feelslike_c}°C`
+                document.getElementById("humi").innerText = `humidity: ${currentWeather.humidity}`
+                document.getElementById("wind").innerText = `wind_kph : ${currentWeather.wind_kph}`
+                document.getElementById("lastupdate").innerText = `last_updated: ${currentWeather.last_updated}`
+
+
+        })
+        .catch((error) => {
+                console.log(error)
+            })
+    }
+        
+    
+    </script>
+</body>
+</html>
